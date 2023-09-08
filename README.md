@@ -47,13 +47,13 @@ Usage
 4. Wait for the processing to complete. The original image and the resulting sketch will be displayed on the page.
 5. You can download the resulting sketch image by clicking on the "Download Sketch" button.
 
-Configuration
+### Configuration
 The application is configured to allow image uploads with the following file extensions: jpg, jpeg, png, and gif. You can change this configuration by modifying the ALLOWED_EXTENSIONS variable in the app.py file.
 
-Scheduled Cleaning
+### Scheduled Cleaning
 The application includes a background task that clears the 'uploads' and 'results' folders every 20 minutes to manage storage space. This task is handled by the BackgroundScheduler from the apscheduler library.
 
-Support and Feedback
+### Support and Feedback
 If you encounter any issues or have suggestions for improvements, please feel free to create an issue on the GitHub repository.
 
 Thank you for using IMG2Sketch!
