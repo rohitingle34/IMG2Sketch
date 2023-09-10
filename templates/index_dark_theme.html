@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image to Pencil Sketch App</title>
+    <style>
+        /* Reset some default styles for better consistency */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* Dark mode styles */
+        body {
+            background-color: #333;
+            color: #fff;
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding: 20px;
+        }
+
+        /* Style the header */
+        h1 {
+            font-size: 28px;
+            margin-bottom: 20px;
+        }
+
+        /* Style the form */
+        form {
+            margin: 20px auto;
+            max-width: 400px;
+            padding: 20px;
+            background-color: #555;
+            border-radius: 8px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Style the file input and submit button */
+        input[type="file"] {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #888;
+            border-radius: 5px;
+            background-color: #444;
+            color: #fff;
+        }
+
+        input[type="submit"] {
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            padding: 12px 24px;
+            cursor: pointer;
+            font-size: 18px;
+        }
+
+        /* Style the error message */
+        .error {
+            color: #ff0000;
+            font-weight: bold;
+            margin: 10px 0;
+        }
+
+        /* Style the image containers */
+        h2 {
+            font-size: 24px;
+            margin-top: 20px;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            margin: 20px 0;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+
+        /* Style the download button and upload another button */
+        a {
+            text-decoration: none;
+        }
+
+        .btn-container {
+            margin-top: 20px;
+        }
+
+        button {
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            padding: 12px 24px;
+            margin: 0 10px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        /* Add hover effect to buttons */
+        button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <h1>IMG2Sketch</h1>
+    <h4>Image to Pencil Sketch App</h4>
+    <form method="POST" enctype="multipart/form-data">
+        <input type="file" name="file" accept=".jpg, .jpeg, .png, .gif">
+        <input type="submit" value="Convert Image">
+        <p><span style="font-size: small;">Use high-quality images only for good results.</span></p>
+    </form>
+
+    {% if error %}
+        <p class="error">{{ error }}</p>
+    {% endif %}
+
+    {% if original %}
+        <h2>Original Image</h2>
+        <img src="{{ url_for('uploaded_file', filename=original) }}" alt="Original Image">
+        <h2>Pencil Sketch</h2>
+        <img src="{{ url_for('result_file', filename=result) }}" alt="Pencil Sketch">
+        <div class="btn-container">
+            <a href="{{ url_for('result_file', filename=result) }}" download="pencil_sketch.jpg">
+                <button>Download Pencil Sketch</button>
+            </a>
+            <div>&nbsp;</div>
+            <a href="/">
+                <button>Upload Another Image</button>
+            </a>
+        </div>
+        <div>&nbsp;</div>
+        <p><b>Privacy</b>: This app does not store your images; they will be deleted automatically after completing the task.</p>
+    {% endif %}
+    <footer>
+        <div>&nbsp;</div>
+    <p>Created By Rohit Ingle</p>
+</footer>
+</body>
+</html>
